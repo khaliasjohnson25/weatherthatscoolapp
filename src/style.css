@@ -83,3 +83,6 @@ li {
 .current-location {
   background: rgb(165, 209, 209)
 }
+.weather-forecast :hover{
+  color:rgb(#ffb5b5,#ffcbcb,#407088) ,;
+}
