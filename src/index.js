@@ -47,15 +47,15 @@ function displayForecast(response){
   let forecastElement = document.querySelector("#forecast");
 
 let forecastHTML = `<div class="row">`;
-days.forEach(function(day)){
+forecast.forEach(function (forecastDay)  {
   forecastHTML =  forecastHTML +
   `
             <div class="col-2">
-               <div class="forecast-date">${day}</div>
+               <div class="forecast-date">${forecastDay.dt}</div>
               <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/scattered-clouds-day.png" id="icon-scattered-clouds-day" alt="" width="36"/>
               <div class="weather-forecast-temperature"></div>  
-               <span class="weather-temperature-max">37°</span>
-              <span class="weather-temperature-min">23°</span>
+               <span class="weather-temperature-max">${forecastDay.temp.max}°</span>
+              <span class="weather-temperature-min">${forecastDay.temp.min}°</span>
             </div>
   
   `;
