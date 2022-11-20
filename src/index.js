@@ -45,8 +45,9 @@ navigator.geolocation.getCurrentPosition(handlePosition)
 function displayForecast(){
   let forecastElement = document.querySelector("#forecast");
 
-  forecastElement.innerHTML = `
-  <div class="row">
+let forecastHTML = `<div class="row">`;
+  forecastHTML =  forecastHTML +
+  `
             <div class="col-2">
                <div class="forecast-date">Sun</div>
               <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/scattered-clouds-day.png" id="icon-scattered-clouds-day" alt="" width="36"/>
@@ -56,6 +57,8 @@ function displayForecast(){
             </div>
   
   `;
+  forecastHTML = forecastHTML +`</div>`;
+  forecastElement.innnerHTML = forecastHTML;
 }
 
 function displayTemperature(response) {
