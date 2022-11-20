@@ -70,10 +70,15 @@ li {
 .weather-forecast {
   margin-top: 20px;
   text-align: center;
+  transition: ease-in-out 0ms;
+  
 }
 .forecast-date {
   font-size: 16px;
   color: #48484a;
+  margin: 1px 4px 0;
+  width: 48px;
+  opacity: 0.5;
 }
 .weather-forecast-temperature {
   font-size: 13px;
