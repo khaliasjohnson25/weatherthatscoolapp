@@ -35,6 +35,13 @@ function getForecast(coordinates) {
   let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=-77.0365427&lat=38.8950368&key=a34tf68cfb143a32002a6d05a5caocaf&units=imperial`;
   axios.get(apiUrl).then(displayForecast);
 }
+function handlePosition(position) {
+  console.log(position.coords.latitude);
+  console.log(position.coords.longitude);
+}
+
+navigator.geolocation.getCurrentPosition(handlePosition)
+
 
 function displayTemperature(response) {
   let temperatureElement = document.querySelector("#current-temperature");
