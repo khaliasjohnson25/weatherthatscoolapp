@@ -29,12 +29,6 @@ function formatDay(timestamp) {
   return days[day];
 }
 
-
-function getForecast() {
-  let apiKey = "a34tf68cfb143a32002a6d05a5caocaf";
-  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query={query}&key={key}&units=imperial`;
-  axios.get(apiUrl).then(displayForecast);
-}
 function handlePosition(position) {
   console.log(position.coords.latitude);
   console.log(position.coords.longitude);
@@ -79,16 +73,16 @@ function displayTemperature(response) {
   celciusTemperature = response.data.temperature.current;
 
   temperatureElement.innerHTML = Math.round(response.data.temperature.current);
-  cityElement.innerHTML = response.data.city;
-  currentDescription.innerHTML = response.data.condition.description;
+  cityElement.innerHTML = response.data.name;
+  currentDescription.innerHTML = response.data.weather[0].description;
   currentHumidity.innerHTML = response.data.temperature.humidity;
   currentWind.innerHTML = Math.round(response.data.wind.speed);
-  dateElement.innerHTML = formatDate(response.data. time * 1000);
+  dateElement.innerHTML = formatDate(response.data.dt * 1000);
   iconElement.setAttribute(
     "src",
     response.data.condition.icon_url
   );
-  iconElement.setAttribute("alt", response.data.condition.description);
+  iconElement.setAttribute("alt", response.data.weather[0].description);
 
   getForecast(response.data.coordinates);
 }
@@ -105,10 +99,20 @@ function handleSubmit(event) {
   search(cityInputElement.value);
 }
 
-displayForecast();
+function displayFahrenheitTemperature(event){
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature");
+
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+  let fahrenheitTemperature = (celciusTemperature * 9) / 5 + 32;
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+}
+
+displayForecast(response);
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
 
-search("Washington","Los Angeles")
+search("Washington");
 
