@@ -34,32 +34,37 @@ function handlePosition(position) {
   console.log(position.coords.longitude);
 }
 
-navigator.geolocation.getCurrentPosition(handlePosition)
+navigator.geolocation.getCurrentPosition(handlePosition);
 
-function displayForecast(response){
-   console.log(response.data.daily);
+function displayForecast(response) {
+  console.log(response.data.daily);
   let forecastElement = document.querySelector("#forecast");
   let forecast = response.data.daily;
 
-let forecastHTML = `<div class="row">`;
-forecast.forEach(function (forecastDay, index)  {
-  if(index< 6){
-  forecastHTML =  forecastHTML +
-  `
+  let forecastHTML = `<div class="row">`;
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `
             <div class="col-2">
                <div class="forecast-date">${formatDay(forecastDay.dt)}</div>
               <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png","icon":"clear-sky-day" width="36"/>
               <div class="weather-forecast-temperature"> 
-               <span class="weather-temperature-max">${Math.round(forecastDay.temperature.max)}°</span>
-              <span class="weather-temperature-min">${Math.round(forecastDay.temperature.min)}°</span>
+               <span class="weather-temperature-max">${Math.round(
+                 forecastDay.temperature.max
+               )}°</span>
+              <span class="weather-temperature-min">${Math.round(
+                forecastDay.temperature.min
+              )}°</span>
             </div>
   </div> 
   `;
-  forecastHTML = forecastHTML +`</div>`;
+    }
+  });
+  forecastHTML = forecastHTML + `</div>`;
   forecastElement.innnerHTML = forecastHTML;
-  getForecast(response.data.coordinates);
 }
-}}
 
 function displayTemperature(response) {
   let temperatureElement = document.querySelector("#current-temperature");
@@ -73,23 +78,25 @@ function displayTemperature(response) {
   celciusTemperature = response.data.temperature.current;
 
   temperatureElement.innerHTML = Math.round(response.data.temperature.current);
-  cityElement.innerHTML = response.data.name;
-  currentDescription.innerHTML = response.data.weather[0].description;
+  cityElement.innerHTML = response.data.city;
+  currentDescription.innerHTML = response.data.condition.description;
   currentHumidity.innerHTML = response.data.temperature.humidity;
   currentWind.innerHTML = Math.round(response.data.wind.speed);
   dateElement.innerHTML = formatDate(response.data.dt * 1000);
-  iconElement.setAttribute(
-    "src",
-    response.data.condition.icon_url
-  );
-  iconElement.setAttribute("alt", response.data.weather[0].description);
+  iconElement.setAttribute("src", response.data.condition.icon_url);
+  iconElement.setAttribute("alt", response.data.condition.description);
 
   getForecast(response.data.coordinates);
+}
+function getForecast(coordinates) {
+  let apiKey = "a34tf68cfb143a32002a6d05a5caocaf";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lat=${coordinates.latitude}&lon=${coordinates.longitude}&key=${apiKey}&units=imperial`;
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function search(city) {
   let apiKey = "a34tf68cfb143a32002a6d05a5caocaf";
-  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lat=38.8951&lon=-77.0364&key=a34tf68cfb143a32002a6d05a5caocaf&units=imperial`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=imperial`;
   axios.get(apiUrl).then(displayTemperature);
 }
 
@@ -99,7 +106,7 @@ function handleSubmit(event) {
   search(cityInputElement.value);
 }
 
-function displayFahrenheitTemperature(event){
+function displayFahrenheitTemperature(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#temperature");
 
@@ -109,10 +116,7 @@ function displayFahrenheitTemperature(event){
   temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
 }
 
-displayForecast(response);
-
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
 
 search("Washington");
-
