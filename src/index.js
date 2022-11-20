@@ -30,9 +30,9 @@ function formatDay(timestamp) {
 }
 
 
-function getForecast(coordinates) {
+function getForecast() {
   let apiKey = "a34tf68cfb143a32002a6d05a5caocaf";
-  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=-77.0365427&lat=38.8950368&key=a34tf68cfb143a32002a6d05a5caocaf&units=imperial`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query={query}&key={key}&units=imperial`;
   axios.get(apiUrl).then(displayForecast);
 }
 function handlePosition(position) {
@@ -63,6 +63,7 @@ forecast.forEach(function (forecastDay, index)  {
   `;
   forecastHTML = forecastHTML +`</div>`;
   forecastElement.innnerHTML = forecastHTML;
+  getForecast(response.data.coordinates);
 }
 }}
 
@@ -94,7 +95,7 @@ function displayTemperature(response) {
 
 function search(city) {
   let apiKey = "a34tf68cfb143a32002a6d05a5caocaf";
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=washington&key=a34tf68cfb143a32002a6d05a5caocaf&units=imperial`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query={query}&key={key}&units=imperial`;
   axios.get(apiUrl).then(displayTemperature);
 }
 
@@ -109,5 +110,5 @@ displayForecast();
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
 
-search("New York","Washington","Los Angeles")
+search("Washington","Los Angeles")
 
