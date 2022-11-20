@@ -42,6 +42,21 @@ function handlePosition(position) {
 
 navigator.geolocation.getCurrentPosition(handlePosition)
 
+function displayForecast(){
+  let forecastElement = document.querySelector("#forecast");
+
+  forecastElement.innerHTML = `
+  <div class="row">
+            <div class="col-2">
+               <div class="forecast-date">Sun</div>
+              <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/scattered-clouds-day.png" id="icon-scattered-clouds-day" alt="" width="36"/>
+              <div class="weather-forecast-temperature"></div>  
+               <span class="weather-temperature-max">37°</span>
+              <span class="weather-temperature-min">23°</span>
+            </div>
+  
+  `;
+}
 
 function displayTemperature(response) {
   let temperatureElement = document.querySelector("#current-temperature");
@@ -80,6 +95,8 @@ function handleSubmit(event) {
   let cityInputElement = document.querySelector("#city-input");
   search(cityInputElement.value);
 }
+
+displayForecast();
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
