@@ -89,7 +89,7 @@ function displayTemperature(response) {
 
 function search(city) {
   let apiKey = "a34tf68cfb143a32002a6d05a5caocaf";
-  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=38.9072&77.0369&key=a34tf68cfb143a32002a6d05a5caocaf&units=imperial`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lat=38.8951&lon=-77.0364&key=a34tf68cfb143a32002a6d05a5caocaf&units=imperial`;
   axios.get(apiUrl).then(displayTemperature);
 }
 
