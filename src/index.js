@@ -49,11 +49,11 @@ forecast.forEach(function (forecastDay, index)  {
             <div class="col-2">
                <div class="forecast-date">${formatDay(forecastDay.dt)}</div>
               <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png","icon":"clear-sky-day" width="36"/>
-              <div class="weather-forecast-temperature"></div>  
-               <span class="weather-temperature-max">${Math.round(forecastDay.temp.max)}°</span>
-              <span class="weather-temperature-min">${Math.round(forecastDay.temp.min)}°</span>
+              <div class="weather-forecast-temperature"> 
+               <span class="weather-temperature-max">${Math.round(forecastDay.temperature.max)}°</span>
+              <span class="weather-temperature-min">${Math.round(forecastDay.temperature.min)}°</span>
             </div>
-  
+  </div> 
   `;
   forecastHTML = forecastHTML +`</div>`;
   forecastElement.innnerHTML = forecastHTML;
