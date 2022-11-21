@@ -116,6 +116,10 @@ function displayFahrenheitTemperature(event) {
   temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
 }
 
+let dateElement = document.querySelector("#date");
+let currentTime = new Date();
+dateElement.addEventListener = formatDate(currentTime);
+
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
 
