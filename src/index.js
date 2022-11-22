@@ -5,9 +5,6 @@ function formatDate(timestamp) {
     hours = `0${hours}`;
   }
 
-currentTime.innerHTML = `${day} ${hours}:${min}`;
-
-  let currentTime = document.querySelector("#current-date");
   let minutes = date.getMinutes();
   if (minutes < 10) {
     minutes = `0${minutes}`;
@@ -66,7 +63,7 @@ function displayForecast(response) {
     }
   });
   forecastHTML = forecastHTML + `</div>`;
-  forecastElement.innnerHTML = forecastHTML;
+  forecastElement.innerHTML = forecastHTML;
 }
 
 function displayTemperature(response) {
@@ -77,7 +74,7 @@ function displayTemperature(response) {
   let currentWind = document.querySelector("#wind");
   let dateElement = document.querySelector("#current-date");
   let iconElement = document.querySelector("#icon");
-
+dateElement.innerHTML = formatDate(response.data.time*1000);
   celciusTemperature = response.data.temperature.current;
 
   temperatureElement.innerHTML = Math.round(response.data.temperature.current);
