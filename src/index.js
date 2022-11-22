@@ -45,7 +45,6 @@ function displayForecast(response) {
   let forecast = response.data.daily;
 
   let forecastHTML = `<div class="row">`;
-  let days = ["Tues","Wed","Thur","Fri","Sat","Sun"]
   forecast.forEach(function (forecastDay, index) {
     if (index < 6) {
       forecastHTML =
@@ -119,9 +118,6 @@ function displayFahrenheitTemperature(event) {
   let fahrenheitTemperature = (celciusTemperature * 9) / 5 + 32;
   temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
 }
-
-let currentLocationButton = document.querySelector("#current-location");
-currentLocationButton.addEventListener("click", getLocation);
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
