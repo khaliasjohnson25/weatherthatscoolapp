@@ -4,6 +4,10 @@ function formatDate(timestamp) {
   if (hours < 10) {
     hours = `0${hours}`;
   }
+
+currentTime.innerHTML = `${day} ${hours}:${min}`;
+
+  let currentTime = document.querySelector("#current-date");
   let minutes = date.getMinutes();
   if (minutes < 10) {
     minutes = `0${minutes}`;
@@ -41,6 +45,7 @@ function displayForecast(response) {
   let forecast = response.data.daily;
 
   let forecastHTML = `<div class="row">`;
+  let days = ["Tues","Wed","Thur","Fri","Sat","Sun"]
   forecast.forEach(function (forecastDay, index) {
     if (index < 6) {
       forecastHTML =
