@@ -37,7 +37,6 @@ function handlePosition(position) {
 navigator.geolocation.getCurrentPosition(handlePosition);
 
 function displayForecast(response) {
-  console.log(response.data.daily);
   let forecastElement = document.querySelector("#forecast");
   let forecast = response.data.daily;
 
