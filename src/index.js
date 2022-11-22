@@ -48,14 +48,14 @@ function displayForecast(response) {
         forecastHTML +
         `
             <div class="col-2">
-               <div class="forecast-date">${formatDay(forecastDay.dt)}</div>
-              <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png","icon":"clear-sky-day" width="36"/>
+               <div class="forecast-date">${formatDay(forecastDay.time)}</div>
+              <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${forecastDay.condition.icon}.png" width="36"/>
               <div class="weather-forecast-temperature"> 
                <span class="weather-temperature-max">${Math.round(
-                 forecastDay.temperature.max
+                 forecastDay.temperature.maximum
                )}°</span>
               <span class="weather-temperature-min">${Math.round(
-                forecastDay.temperature.min
+                forecastDay.temperature.minimum
               )}°</span>
             </div>
   </div> 
