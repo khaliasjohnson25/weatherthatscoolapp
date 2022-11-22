@@ -120,6 +120,8 @@ function displayFahrenheitTemperature(event) {
   temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
 }
 
+let currentLocationButton = document.querySelector("#current-location");
+currentLocationButton.addEventListener("click", getLocation);
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
