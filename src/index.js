@@ -74,7 +74,7 @@ function displayTemperature(response) {
   let currentWind = document.querySelector("#wind");
   let dateElement = document.querySelector("#current-date");
   let iconElement = document.querySelector("#icon");
-dateElement.innerHTML = formatDate(response.data.time*1000);
+dateElement.innerHTML = formatDate(response.data.time * 1000);
   celciusTemperature = response.data.temperature.current;
 
   temperatureElement.innerHTML = Math.round(response.data.temperature.current);
@@ -82,7 +82,7 @@ dateElement.innerHTML = formatDate(response.data.time*1000);
   currentDescription.innerHTML = response.data.condition.description;
   currentHumidity.innerHTML = response.data.temperature.humidity;
   currentWind.innerHTML = Math.round(response.data.wind.speed);
-  dateElement.innerHTML = formatDate(response.data.dt * 1000);
+  dateElement.innerHTML = formatDate(response.data.time * 1000);
   iconElement.setAttribute("src", response.data.condition.icon_url);
   iconElement.setAttribute("alt", response.data.condition.description);
 
